@@ -16,12 +16,12 @@ export const SITE = {
 } as const;
 
 export const TECH_STACK = {
-  frontend: ['React.js', 'Next.js'],
-  backend: ['Node.js', 'NestJS', 'Express'],
-  eventSystems: ['Kafka', 'RabbitMQ'],
-  databases: ['PostgreSQL', 'MongoDB', 'Firebase'],
-  cloudDevOps: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Nginx'],
-  ai: ['OpenAI', 'Claude API', 'Prompt engineering'],
+  frontend: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS'],
+  backend: ['Node.js', 'NestJS', 'Express', 'TypeScript', 'REST APIs', 'GraphQL'],
+  eventSystems: ['Kafka', 'RabbitMQ', 'Redis', 'Message queues'],
+  databases: ['PostgreSQL', 'MongoDB', 'Firebase', 'Redis'],
+  cloudDevOps: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Nginx', 'Git', 'Linux'],
+  ai: ['OpenAI', 'Claude API', 'Prompt engineering', 'AI integrations'],
 } as const;
 
 export const EXPERIENCE = [
