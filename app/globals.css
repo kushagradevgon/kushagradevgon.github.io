@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --hero-bg: #000000;
+  --foreground: #fafafa;
+  --accent: #6366f1;
+  --accent-violet: #8b5cf6;
+  --glow: rgba(99, 102, 241, 0.4);
+  --glow-violet: rgba(139, 92, 246, 0.35);
+}
+
+/* ── Aurora blobs ── */
+.aurora-blob-1 {
+  animation: aurora-1 18s ease-in-out infinite;
+}
+.aurora-blob-2 {
+  animation: aurora-2 22s ease-in-out infinite;
+  animation-delay: -6s;
+}
+.aurora-blob-3 {
+  animation: aurora-3 15s ease-in-out infinite;
+  animation-delay: -10s;
+}
+.aurora-blob-4 {
+  animation: aurora-1 26s ease-in-out infinite reverse;
+  animation-delay: -4s;
+}
+
+@keyframes aurora-1 {
+  0%,100% { transform: translate(0,0) scale(1) rotate(0deg); }
+  30%     { transform: translate(60px,-50px) scale(1.12) rotate(6deg); }
+  65%     { transform: translate(-50px,70px) scale(0.92) rotate(-4deg); }
+}
+@keyframes aurora-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%     { transform: translate(-80px,40px) scale(1.18) rotate(-8deg); }
+  70%     { transform: translate(60px,-60px) scale(0.88) rotate(5deg); }
+}
+@keyframes aurora-3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(50px,-80px) scale(1.22) rotate(10deg); }
+}
+
+/* Hero hex grid — full coverage */
+.hero-hex-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16.3v32.7L28 65.3 0 49V16.3L28 0z' fill='none' stroke='rgba(139%2C92%2C246%2C0.18)' stroke-width='0.8'/%3E%3Cpath d='M28 32.5l28 16.3v32.7L28 97.8 0 81.5V48.8L28 32.5z' fill='none' stroke='rgba(139%2C92%2C246%2C0.18)' stroke-width='0.8'/%3E%3C/svg%3E");
+  background-size: 56px 97px;
+}
+
+/* Hero base BG */
+.hero-bg-base {
+  background: #130a2a;
+}
+
+/* Hero: moving grid (subtle square) */
+.hero-grid {
+  background-size: 60px 60px;
+  animation: hero-grid 30s linear infinite;
+}
+@keyframes hero-grid {
+  0%   { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Shimmer sweep */
+@keyframes hero-shimmer {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  45%  { opacity: 0.12; }
+  55%  { opacity: 0.12; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #000;
+  color-scheme: dark;
+}
+
+html.dark,
+html {
+  background-color: #000 !important;
+}
+
+body {
+  background-color: #000 !important;
+  color: #e4e4e7;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 100;
+}
+
+/* Custom cursor: CSS-only (no JS lag). Ring cursor on desktop. */
+body.custom-cursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='1.5' stroke-opacity='0.9'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E") 12 12, auto;
+}
+
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor [role='button'] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-opacity='1'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3C/svg%3E") 14 14, pointer;
+}
+
+@media (pointer: coarse) {
+  body.custom-cursor,
+  body.custom-cursor a,
+  body.custom-cursor button,
+  body.custom-cursor [role='button'] {
+    cursor: auto;
+  }
+}
+
+/* Gradient text — metallic silver/lavender */
+.gradient-text {
+  background: linear-gradient(135deg, #c4b5fd 0%, #a5b4fc 30%, #e0e7ff 60%, #f8fafc 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 8s ease infinite;
+}
+
+/* Primary CTA: violet gradient pill + glow */
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9, #4f46e5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+  box-shadow: 0 0 32px -4px rgba(109, 40, 217, 0.7), 0 0 0 1px rgba(124, 58, 237, 0.5);
+  transition: box-shadow 0.25s, transform 0.15s;
+  font-weight: 600;
+  color: #fff;
+}
+.btn-hero-primary:hover {
+  box-shadow: 0 0 44px -4px rgba(109, 40, 217, 0.85), 0 0 0 1px rgba(124, 58, 237, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Glass secondary pill button */
+.btn-hero-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(15, 8, 40, 0.55);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-hero-glass:hover {
+  background: rgba(30, 16, 70, 0.75);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+/* AI prompt chip */
+.chip-ask {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9999px;
+  background: rgba(15, 8, 40, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.chip-ask:hover {
+  background: rgba(30, 16, 80, 0.75);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* AI ask bar — unified pill */
+.ask-bar {
+  background: rgba(10, 5, 30, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  box-shadow: 0 0 40px -12px rgba(109, 40, 217, 0.4), inset 0 0 0 1px rgba(255,255,255,0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ask-bar:focus-within {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 50px -10px rgba(109, 40, 217, 0.55);
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Coding BG: floating code tokens */
+.code-float {
+  animation: code-float 25s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes code-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.12;
+  }
+  25% {
+    transform: translate(8px, -12px) scale(1.05);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate(-5px, 8px) scale(0.98);
+    opacity: 0.1;
+  }
+  75% {
+    transform: translate(12px, 5px) scale(1.02);
+    opacity: 0.15;
+  }
+}
+
+/* ─── Section backgrounds (LIGHT) ─── */
+
+/* Tech: clean white with faint sky-blue dot grid */
+.section-bg-tech {
+  background-color: #ffffff;
+  background-image: radial-gradient(rgba(56,189,248,0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Experience: soft off-white with very faint teal left glow */
+.section-bg-experience {
+  background-color: #f8fffe;
+  background-image: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(20,184,166,0.07) 0%, transparent 60%);
+}
+
+/* Projects: light lavender-white with faint diagonal lines */
+.section-bg-projects {
+  background-color: #faf8ff;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(139,92,246,0.05) 0px,
+      rgba(139,92,246,0.05) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+}
+
+/* Contact: warm white with faint pink glow at top */
+.section-bg-contact {
+  background-color: #fff8fc;
+  background-image: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(236,72,153,0.07) 0%, transparent 60%);
+}
+
+/* Dark→light transition band (bottom of hero) */
+.hero-to-light-fade {
+  background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+
+/* Section divider for light pages */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.07) 30%, rgba(0,0,0,0.07) 70%, transparent 100%);
+}
+
+/* Section title (light bg) */
+.section-title {
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+/* Per-section heading accent underlines */
+.heading-accent-blue   { background: linear-gradient(90deg, #38bdf8, #0ea5e9); }
+.heading-accent-teal   { background: linear-gradient(90deg, #2dd4bf, #14b8a6); }
+.heading-accent-violet { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
+.heading-accent-pink   { background: linear-gradient(90deg, #f472b6, #ec4899); }
+
+/* Input base — consistent across forms */
+.input-base {
+  @apply w-full rounded-xl border border-zinc-700/80 bg-zinc-800/50 px-4 py-3.5 text-[15px] text-zinc-100 placeholder-zinc-500;
+  @apply transition-colors duration-200;
+  @apply focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/25;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* Button primary */
+.btn-primary {
+  @apply inline-flex min-h-[44px] items-center justify-center rounded-xl bg-indigo-500 px-6 py-3 text-[15px] font-medium text-white;
+  @apply transition-colors duration-200 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-60;
+}
+
+/* Soft glow box */
+.glow-border {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.glow-border:hover {
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.25), 0 0 32px -8px rgba(99, 102, 241, 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111113;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
